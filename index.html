@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Menu Card</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+<script src="markerhandler.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <!-- Local StyleSheet -->
+ <script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+  <script src="button.js"></script>
+  <!--Marker Handler Src-->
+ <script src="addMarker.js"/>
+<link rel="stylesheet" href="style.css"/>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"/> 
+  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"/> 
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"/>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyCKKBTwGT30EtmF1_kEsda13rGCw8rtoQI",
+    authDomain: "armenu-3989b.firebaseapp.com",
+    projectId: "armenu-3989b",
+    storageBucket: "armenu-3989b.appspot.com",
+    messagingSenderId: "48526710187",
+    appId: "1:48526710187:web:4f81c4fa7ec9cb35be6eee"
+  };
+
+  
+   firebase.initializeApp(firebaseConfig)
+   firebase.analytics()
+   </script>
+</head>
+
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene 
+    embedded vr-mode-ui="enabled: false"     
+    arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;"
+    gesture-detector
+   create-button>
+        <a-entity camera></a-entity>
+    <a-assets>
+      <a-asset-item id="pizza-model" src="./assets/pizza/scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <!-- Camera -->
+    <a-marker id="pizza-marker" type="pattern" url="assets/dish-markers/pattern-pizza.patt" cursor="rayOrigin : mouse" marker-handler>
+
+      <a-entity id="pizza-3D-model" position="-1 0 0" scale="0.05 0.05 0.05" gltf-model="#pizza-model" gesture-handler
+      ></a-entity>
+
+      <a-plane position=" 0 0 0" width="1.5" height="1.5" rotation="-90 0 0">
+        <a-plane position="0 0.89 0.02" width="1.49" height="0.3 " rotation="0 0 0" color="#2efg089">
+          <a-entity position="0 0 0.1" rotation="0 0 0" text="font:monoid ; value:PIZZA ; color:black ; width:1.8 ; height:1 ; align:center"></a-entity>
+        </a-plane>
+
+        <a-entity position="0 0 0.1" rotation="0 0 0" text="font:monoid;color:black;align:center;width:2;value:Tomato sauce\n\nMozzarella cheese\n\nParmesan cheese (optional)\n\nFresh Basil\n\nOlive oil\n\nBlack pepper (optional)"></a-entity>
+      </a-plane>
+    </a-marker>
+
+  </a-scene>
+
+
+ <div id="button-div">
+
+
+ </div>
+</body>
+
+</html>
